@@ -11,7 +11,7 @@ function App() {
   const[todos, setTodos] = useState([
   ])
 
-  const addTodo = (text, category) => {
+  const addTodo = (text, category, description) => {
 
     const newTodos = [
       ...todos, 
@@ -19,6 +19,7 @@ function App() {
         id: Math.floor(Math.random() * 10000),
         text,
         category,
+        description,
         isCompleted: false
       },
   ]
@@ -50,7 +51,7 @@ function App() {
         <Search search={search} setSearch={setSearch}/>
         <div className="todo-list">
           {todos.filter((todo) => todo.text.toLowerCase().includes(search.toLowerCase())).map ((todo) => (
-            <Todo key={todo.id} todo={todo} removeTodo={removeTodo} completeTodo={completeTodo}/>
+            <Todo key={todo.text} todo={todo} removeTodo={removeTodo} completeTodo={completeTodo}/>
           ))}
         </div>
         <TodoForm addTodo={addTodo}/>
